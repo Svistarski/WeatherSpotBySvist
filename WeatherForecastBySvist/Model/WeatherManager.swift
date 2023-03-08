@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreLocation 
 
-protocol WeatherManagerDelegate {//создаем протокол, чтобы многократно использовать функцию didUpdateWeather в других классах
+protocol WeatherManagerDelegate {
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     
@@ -15,62 +16,69 @@ protocol WeatherManagerDelegate {//создаем протокол, чтобы �
         
 }
 
-struct WeatherManager {//структура отвечающая за запрос в API
+struct WeatherManager {
     
-    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=ed9acd0d805ecf9e2e0964410d4c0293&units=metric"//создаем свойство с URL по умолчанию
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=ed9acd0d805ecf9e2e0964410d4c0293&units=metric"
     
     var delegate: WeatherManagerDelegate?
     
-    func fetchURL(cityName: String) {//функция вставляет в URL по умолчанию название города
+    func fetchURL(cityName: String) {
         
-        let urlString = "\(weatherURL)&q=\(cityName)"//содержит модифицированый URL c названием города
+        let urlString = "\(weatherURL)&q=\(cityName)"
         
-        performRequest(with: urlString)//вызываем функцию performRequest с нашим urlString в качестве инпута
+        performRequest(with: urlString)
     }
     
-    func performRequest (with urlString:String) {//функция делает нетворкинк с API
+    func fetchURL(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         
-        if let url = URL(string: urlString) {//url с нашим параметром, if let тк класс URL optional
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        
+        performRequest(with: urlString)
+    }
+    
+    func performRequest (with urlString:String) {
+        
+        if let url = URL(string: urlString) {
          
-            let session = URLSession(configuration: .default)//сессия со стандартной конфигурацией
+            let session = URLSession(configuration: .default)
             
-            let task = session.dataTask(with: url) { (data, respons, error) in // создаем таск для сессии вставляя наш URL и комплишен хэндлер (клоужер с нужными параметрами)
+            let task = session.dataTask(with: url) { (data, respons, error) in
                 
-                if error != nil {//если выскакивает ошибка
-                    delegate?.didFailWithErrors(error: error!)//вызываем функцию делигата
-                    return//заканчиваем функцию
+                if error != nil {
+                    delegate?.didFailWithErrors(error: error!)
+                    return
                 }
                 
-                if let safeData = data {//создаем безопасные данные через optional binding
+                if let safeData = data {
                     
-                    if let weather = parseJSON(safeData){//вставляем данные в функцию parseJSON. if let тк выдает optional output
+                    if let weather = parseJSON(safeData){
                     
-                        delegate?.didUpdateWeather(self, weather: weather)//вставляем weather в функцию didUpdateWeather для делегата (в нашем случае ViewController)
+                        delegate?.didUpdateWeather(self, weather: weather)
                     }
                 }
             }
                 
-            task.resume()//запускаем таск, resume тк dataTask всегда находиться в suspended состоянии
+            task.resume()
         }
     }
     
-    func parseJSON (_ weatherData: Data) -> WeatherModel? {//фукция для парсинга из JSON. Возвращаем optional WeatherModel тк может выкинуть nil
+    func parseJSON (_ weatherData: Data) -> WeatherModel? {
         
-        let decoder = JSONDecoder()//создаем декодер
+        let decoder = JSONDecoder()
         
         do {
-            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)//раскодированые данные. WeatherData как DataType. weatherData - наш параметр
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             
-            let id = decodedData.weather[0].id//создаем ID
-            let temp = decodedData.main.temp//создаем температуру
-            let name = decodedData.name//создаем название
+            let id = decodedData.weather[0].id
+            let temp = decodedData.main.temp
+            let name = decodedData.name
             
-            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)//экземпляр класса WeatherModel с создаными константами как параметрами
+            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)
              
-            return weather//возвращаем weather
+            return weather
             
         } catch {
-            delegate?.didFailWithErrors(error: error)//вызываем функцию делигата
+            delegate?.didFailWithErrors(error: error)
             return nil
         }
     }

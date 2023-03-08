@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct WeatherModel {//структура модели данных погоды. Тип данных, который мы будем использывать
+struct WeatherModel {
     
-    let conditionID: Int//свойство с ID (для рисунка)
-    let cityName: String//свойство c названием города
-    let temperature: Double//свойство c температурой
+    let conditionID: Int
+    let cityName: String
+    let temperature: Double
     
-    var temperatureString: String {//computed property выдающее температуру в String с одной цифрой после зяпятой 
+    var temperatureString: String {
         return String(format: "%.1f", temperature)
     }
     
-    var getConditionName: String {//computed property выдающее название рисунка на основе ID погоды
+    var getConditionName: String {
         
         switch conditionID {
         case 200...232:
