@@ -5,6 +5,7 @@
 //  Created by Artsem Svistunou on 04/03/2023.
 //
 
+
 import Foundation
 
 struct WeatherModel {
