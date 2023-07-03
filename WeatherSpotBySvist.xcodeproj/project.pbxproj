@@ -72,7 +72,7 @@
 		28DE187C29A2591700F84E35 = {
 			isa = PBXGroup;
 			children = (
-				28DE188729A2591700F84E35 /* WeatherForecastBySvist */,
+				28DE188729A2591700F84E35 /* WeatherSpotBySvist */,
 				28DE188629A2591700F84E35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +85,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		28DE188729A2591700F84E35 /* WeatherForecastBySvist */ = {
+		28DE188729A2591700F84E35 /* WeatherSpotBySvist */ = {
 			isa = PBXGroup;
 			children = (
 				28DE188829A2591700F84E35 /* AppDelegate.swift */,
@@ -97,7 +97,7 @@
 				286B64DB29B7E23000C53DA0 /* Assets.xcassets */,
 				28DE189629A2591E00F84E35 /* Info.plist */,
 			);
-			path = WeatherForecastBySvist;
+			path = WeatherSpotBySvist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +135,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 28DE188029A2591700F84E35 /* Build configuration list for PBXProject "WeatherForecastBySvist" */;
+			buildConfigurationList = 28DE188029A2591700F84E35 /* Build configuration list for PBXProject "WeatherSpotBySvist" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -325,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YB5DZ454W9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeatherForecastBySvist/Info.plist;
+				INFOPLIST_FILE = WeatherSpotBySvist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -353,7 +353,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YB5DZ454W9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeatherForecastBySvist/Info.plist;
+				INFOPLIST_FILE = WeatherSpotBySvist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -375,7 +375,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		28DE188029A2591700F84E35 /* Build configuration list for PBXProject "WeatherForecastBySvist" */ = {
+		28DE188029A2591700F84E35 /* Build configuration list for PBXProject "WeatherSpotBySvist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28DE189729A2591E00F84E35 /* Debug */,
