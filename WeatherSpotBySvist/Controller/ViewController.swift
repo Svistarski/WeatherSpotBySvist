@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  WeatherForecastBySvist
+//  WeatherSpotBySvist
 //
 //  Created by Artsem Svistunou on 19/02/2023.
 //

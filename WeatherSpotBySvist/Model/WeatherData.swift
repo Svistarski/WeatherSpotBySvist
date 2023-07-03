@@ -1,6 +1,6 @@
 //
 //  WeatherData.swift
-//  WeatherForecastBySvist
+//  WeatherSpotBySvist
 //
 //  Created by Artsem Svistunou on 04/03/2023.
 //
